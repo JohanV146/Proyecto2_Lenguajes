@@ -1,4 +1,5 @@
 import System.IO
+import InfoEmpresa
 
 mostrarMenu :: IO ()
 mostrarMenu = do
@@ -14,6 +15,7 @@ mostrarMenu = do
 
 menuRecursivo :: IO ()
 menuRecursivo = do
+    empresa <- InfoEmpresa.registrarEmpresa
     mostrarMenu
     opcion <- getLine
     case opcion of
