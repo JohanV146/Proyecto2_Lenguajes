@@ -15,12 +15,15 @@ mostrarMenu = do
 
 menuRecursivo :: IO ()
 menuRecursivo = do
-    empresa <- InfoEmpresa.registrarEmpresa
     mostrarMenu
     opcion <- getLine
     case opcion of
         "1" -> do
-            putStrLn "Has seleccionado la Opción 1."
+            putStrLn "\n"
+            let ruta = "info.txt"
+            empresa1 <- leerArchivo ruta
+            showEmpresas empresa1
+            putStrLn "\n"
             menuRecursivo
         "2" -> do
             putStrLn "Has seleccionado la Opción 2."
