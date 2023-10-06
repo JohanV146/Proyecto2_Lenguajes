@@ -1,5 +1,8 @@
 import System.IO
 import InfoEmpresa
+import InfoParqueos
+import InfoUsuarios
+import InfoBici
 
 mostrarMenu :: IO ()
 mostrarMenu = do
@@ -20,19 +23,43 @@ menuRecursivo = do
     case opcion of
         "1" -> do
             putStrLn "\n"
-            let ruta = "info.txt"
+            let ruta = "InfoEmpresa.txt"
             empresa1 <- leerArchivo ruta
             showEmpresas empresa1
             putStrLn "\n"
             menuRecursivo
         "2" -> do
-            putStrLn "Has seleccionado la Opción 2."
+            putStrLn "\n"
+            putStrLn "Indique la Ruta del archivo Parqueos: "
+            ruta1 <- getLine
+            let ruta2 = "infoParqueo.txt"
+            parqueo1 <- leerArchivoP ruta1
+            parqueo2 <- leerArchivoPNew ruta2
+            existeParqueo parqueo1 parqueo2
+            parqueo1 <- leerArchivoP ruta2
+            showParqueos parqueo1
+            putStrLn "\n"
             menuRecursivo  
         "3" -> do
-            putStrLn "Has seleccionado la Opción 3."
+            putStrLn "\n"
+            let ruta = "infoBici.txt"
+            bici <- leerArchivoB ruta
+            putStrLn "Indique la Ruta del archivo ubicacion Bicicletas: "
+            ruta2 <- getLine
+            ubiBici <- leerArchivoBNew ruta2
+            putStrLn "Se cargo con exito"
+            putStrLn "\n"
             menuRecursivo 
         "4" -> do
-            putStrLn "Has seleccionado la Opción 4."
+            putStrLn "\n"
+            putStrLn "Indique la Ruta del archivo Usuarios: "
+            ruta1 <- getLine
+            let ruta2 = "infoUsuarios.txt"
+            usuario1 <- leerArchivoU ruta1
+            usuario2 <- leerArchivoUNew ruta2
+            existeUsuario usuario1 usuario2
+            putStrLn "Se cargo con exito"
+            putStrLn "\n"
             menuRecursivo
         "5" -> do
             putStrLn "Has seleccionado la Opción 5."
